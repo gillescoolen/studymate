@@ -9,7 +9,7 @@ class Module extends Model
     protected $table = 'module';
     protected $primaryKey = 'id';
     
-    public function Period(){
+    public function periods(){
         return $this->belongsTo('App\Period');
     }
 }
