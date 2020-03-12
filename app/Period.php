@@ -12,4 +12,12 @@ class Period extends Model
     public function modules() {
         return $this->hasMany('App\Module');
     }
+
+    public function getPercentageAttribute()
+    {
+        // foreach () {
+        //     return $this->hasMany('App\Module')->sum('ec');
+        // }
+        return $this->hasMany('App\Module')->sum('ec');
+    }
 }

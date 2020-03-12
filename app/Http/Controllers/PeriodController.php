@@ -9,7 +9,8 @@ class PeriodController extends Controller
 {
     public function index()
     {
-        $periods = Period::with('modules')->get();
+        $periods = Period::all();
+
         return view('period', ['periods' => $periods]);
     }
 }
