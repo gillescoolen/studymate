@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddGradeField extends Migration
+class AddFinalTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddGradeField extends Migration
      */
     public function up()
     {
-        Schema::table('module', function (Blueprint $table) {
-            $table->integer('grade')->nullable();
+        Schema::create('final_type', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('type');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ class AddGradeField extends Migration
      */
     public function down()
     {
-        Schema::table('module', function($table) {
-            $table->dropColumn('grade');
-        });
+        Schema::dropIfExists('final_type');
     }
 }
