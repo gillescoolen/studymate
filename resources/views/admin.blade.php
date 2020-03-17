@@ -1,5 +1,6 @@
-@extends('dashboard')
+@extends('main')
 
 @section('content')
-    Admin
+    @include('admin.modules')
+    @include('admin.exams')
 @endsection

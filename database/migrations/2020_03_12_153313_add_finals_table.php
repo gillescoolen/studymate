@@ -19,8 +19,8 @@ class AddFinalsTable extends Migration
             $table->integer('ec');
             $table->integer('module_id')->unsigned();
             $table->foreign('module_id')->references('id')->on('module');
-            $table->integer('final_type')->unsigned();
-            $table->foreign('final_type')->references('id')->on('final_type');
+            $table->integer('type_id')->unsigned();
+            $table->foreign('type_id')->references('id')->on('type');
             $table->date('date');
             $table->timestamps();
         });

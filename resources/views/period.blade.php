@@ -1,4 +1,4 @@
-@extends('dashboard')
+@extends('main')
 
 @section('content')
 @if(count($periods) > 0)
@@ -14,8 +14,8 @@
                   <th scope="col">EC</th>
                   <th scope="col">Behaald cijfer</th>
                 </tr>
-              </thead>
-              <tbody>
+            </thead>
+            <tbody>
                 @foreach ($period->modules as $module)
                     <tr>
                         <td style="width: 25%">{{$module->name}}</td>
@@ -24,12 +24,12 @@
                             @if ($module->grade != null)
                                 {{$module->grade}}
                             @else
-                                n.v.t
+                                -
                             @endif
                         </td>
                     </tr>
                 @endforeach 
-              </tbody>
+            </tbody>
         </table>
     @endforeach
 @else

@@ -19,6 +19,8 @@ class CreateModuleTable extends Migration
             $table->integer('ec');
             $table->integer('period_id')->unsigned();
             $table->foreign('period_id')->references('id')->on('period');
+            $table->integer('teacher_id')->unsigned();
+            $table->foreign('teacher_id')->references('id')->on('teacher');
             $table->timestamps();
         });
     }
