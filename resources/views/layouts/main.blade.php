@@ -17,7 +17,7 @@
                 </div>
             </div>
             <hr>
-            @yield('content')
+                @yield('content')
             <hr>
         </div>
     </body>

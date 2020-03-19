@@ -11,7 +11,7 @@ class PeriodController extends Controller
     {
         $periods = Period::all();
 
-        return view('period', ['periods' => $periods]);
+        return view('dashboard', ['periods' => $periods]);
     }
 
     public function store(Request $request)

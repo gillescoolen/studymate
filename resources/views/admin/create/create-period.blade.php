@@ -1,4 +1,4 @@
-<h3>Voeg periode toe<h3>
+<h4>Voeg periode toe</h4>
 <form id="create-form" action="{{ action('PeriodController@store') }}" method="POST">
     @csrf
     <div class="form-row">

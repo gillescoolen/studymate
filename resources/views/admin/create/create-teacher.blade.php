@@ -1,4 +1,4 @@
-<h3>Voeg docent toe<h3>
+<h4>Voeg docent toe</h4>
 <form id="create-form" action="{{ action('TeacherController@store') }}" method="POST">
     @csrf
     <div class="form-row">

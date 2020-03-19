@@ -1,4 +1,4 @@
-@extends('main')
+@extends('layouts.app')
 
 @section('content')
 @if(count($periods) > 0)
@@ -6,7 +6,7 @@
         <div class="col-12">
             Te behalen EC: {{$period->percentage}}
         </div>
-        <h3>Blok {{$period->period}} - Semester {{$period->-semester}}</h3>
+        <h3>Blok {{$period->period}} - Semester {{$period->semester}}</h3>
         <table class="table">
             <thead class="thead-dark">
                 <tr>

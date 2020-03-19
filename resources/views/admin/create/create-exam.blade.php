@@ -1,4 +1,4 @@
-<h3>Voeg tentamen/assessment toe<h3>
+<h4>Voeg tentamen/assessment toe</h4>
 <form id="create-form" action="{{ action('ExamController@store') }}" method="POST">
     @csrf
     <div class="form-row">
