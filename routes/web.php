@@ -32,6 +32,4 @@ Route::post('/add-teacher', 'TeacherController@store');
 // Exam
 Route::post('/add-exam', 'ExamController@store');
 
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
