@@ -12,9 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Auth::routes();
-
 Route::get('/', 'PeriodController@index');
 
 // Admin
@@ -31,5 +28,3 @@ Route::post('/add-teacher', 'TeacherController@store');
 
 // Exam
 Route::post('/add-exam', 'ExamController@store');
-
-Route::get('/home', 'HomeController@index')->name('home');
