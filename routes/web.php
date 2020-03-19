@@ -32,7 +32,5 @@ Route::post('/add-teacher', 'TeacherController@store');
 // Exam
 Route::post('/add-exam', 'ExamController@store');
 
-Route::get('/home', 'AdminController@index')->name('home');
-
 // Logout
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
