@@ -10,14 +10,14 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
-                <h1>STUDYMATE</h1>
+                <div class="col-12">
+                    <h1>STUDYMATE</h1>
+                </div>
             </div>
             <hr>
-            <div class="row">
-                @yield('content')
-            </div>
+            @yield('content')
             <hr>
         </div>
     </body>

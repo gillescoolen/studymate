@@ -15,7 +15,8 @@ class CreatePeriodTable extends Migration
     {
         Schema::create('period', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('semester');
+            $table->integer('period');
+            $table->integer('semester');
             $table->timestamps();
         });
     }

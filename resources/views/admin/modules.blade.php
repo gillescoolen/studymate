@@ -8,6 +8,7 @@
                 <th scope="col">EC</th>
                 <th scope="col">Periode</th>
                 <th scope="col">Semester</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -15,9 +16,10 @@
             <tr>
                 <td style="width: 25%">{{$module->name}}</td>           
                 <td style="width: 25%">{{$module->teacher->firstname}} {{$module->teacher->lastname}}</td>
-                <td style="width: 25%">{{$module->ec}}</td>
-                <td style="width: 25%">{{$module->period->id}}</td>
-                <td style="width: 25%">{{$module->period->semester}}</td>
+                <td style="width: 10%">{{$module->ec}}</td>
+                <td style="width: 10%">{{$module->period->period}}</td>
+                <td style="width: 10%">{{$module->period->semester}}</td>
+                <td style="width: 10%">edit</td>
             </tr>
             @endforeach
         </tbody>

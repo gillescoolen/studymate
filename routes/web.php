@@ -14,4 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'PeriodController@index');
+
+// Admin
 Route::get('/admin', 'AdminController@index');
+
+// Module
+Route::post('/add-module', 'ModuleController@store');
+
+// Period
+Route::post('/add-period', 'PeriodController@store');
+
+// Teacher
+Route::post('/add-teacher', 'TeacherController@store');
+
+// Exam
+Route::post('/add-exam', 'ExamController@store');

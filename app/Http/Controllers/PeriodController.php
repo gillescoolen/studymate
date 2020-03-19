@@ -13,4 +13,10 @@ class PeriodController extends Controller
 
         return view('period', ['periods' => $periods]);
     }
+
+    public function store(Request $request)
+    {
+        Period::create($request->all());
+        return redirect('/admin');
+    }
 }

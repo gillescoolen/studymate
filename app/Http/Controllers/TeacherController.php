@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Module;
+use App\Teacher; 
 use Illuminate\Http\Request;
 
-class ModuleController extends Controller
+class TeacherController extends Controller
 {
     public function store(Request $request)
     {
-        Module::create($request->all());
+        Teacher::create($request->all());
         return redirect('/admin');
     }
 }

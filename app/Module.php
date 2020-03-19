@@ -9,6 +9,13 @@ class Module extends Model
     protected $table = 'module';
     protected $primaryKey = 'id';
     
+    protected $fillable = [
+        'name',
+        'ec',
+        'period_id',
+        'teacher_id',
+    ];
+
     public function period() {
         return $this->belongsTo('App\Period');
     }
@@ -17,8 +24,7 @@ class Module extends Model
     {
         return $this->belongsTo('App\Teacher');
     }
-
-    
+   
     public function finals()
     {
         return $this->hasMany('App\Exam');
