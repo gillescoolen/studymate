@@ -10,8 +10,8 @@ class DeadlineController extends Controller
 {
     public function index()
     {
-        $exams = Exam::all();
-        $deadlines = Deadline::all();
+        $exams = Exam::doesntHave('deadline')->get();
+        $deadlines = Deadline::with('exam')->get();
 
         return view('deadlines', ['exams' => $exams, 'deadlines' => $deadlines]);
     }
