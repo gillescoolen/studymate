@@ -1,5 +1,5 @@
 <h4>Voeg periode toe</h4>
-<form id="create-form" action="{{ action('PeriodController@store') }}" method="POST">
+<form id="create-form" action="{{ route('period.store') }}" method="POST">
     @csrf
     <div class="form-row">
         <div class="col">

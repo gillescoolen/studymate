@@ -1,5 +1,5 @@
 <h4>Voeg tentamen/assessment toe</h4>
-<form id="create-form" action="{{ action('ExamController@store') }}" method="POST">
+<form id="create-form" action="{{ route('exam.store') }}" method="POST">
     @csrf
     <div class="form-row">
         <div class="col">

@@ -21,25 +21,16 @@ Route::get('/', 'PeriodController@index');
 Route::get('admin', 'AdminController@index');
 
 // Module
-Route::get('module/{id}/edit', 'ModuleController@edit');
-Route::get('module/create', 'ModuleController@create');
-Route::post('module/add', 'ModuleController@store');
-Route::post('module/{id}/update', 'ModuleController@update')->name('update-module');
-
-// Route::prefix('module')->namespace('Module')->group(function() {
-//     Route::get('add', 'ModuleController@store')->name('add');
-// });
-
+Route::resource('module', 'ModuleController');
 
 // Period
-Route::post('period/add', 'PeriodController@store');
-Route::post('period/{id}/destroy', 'PeriodController@destroy')->name('delete-period');
+Route::resource('period', 'PeriodController');
 
 // Teacher
-Route::post('teacher/add', 'TeacherController@store');
+Route::resource('teacher', 'TeacherController');
 
 // Exam
-Route::post('exam/add', 'ExamController@store');
+Route::resource('exam', 'ExamController');
 
 // Logout
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

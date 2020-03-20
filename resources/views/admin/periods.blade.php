@@ -14,7 +14,11 @@
                     <td style="width: 40%">{{$period->period}}</td>
                     <td style="width: 40%">{{$period->semester}}</td>
                     <td style="width: 20%">
-                        <form action="{{ route('delete-period', $period->id) }}" method="POST">@csrf<button id="submit" type="submit" class="btn btn-danger">X</button></form>
+                        <form action="{{ route('period.destroy', $period->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button id="submit" type="submit" class="btn btn-danger">X</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

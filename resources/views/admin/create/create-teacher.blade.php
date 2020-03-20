@@ -1,5 +1,5 @@
 <h4>Voeg docent toe</h4>
-<form id="create-form" action="{{ action('TeacherController@store') }}" method="POST">
+<form id="create-form" action="{{ route('teacher.store') }}" method="POST">
     @csrf
     <div class="form-row">
         <div class="col">

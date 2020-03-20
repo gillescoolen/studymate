@@ -1,5 +1,5 @@
 <h4>Voeg module toe</h4>
-<form id="create-form" action="{{ action('ModuleController@store') }}" method="POST">
+<form id="create-form" action="{{ route('module.store') }}" method="POST">
     @csrf
     <div class="form-row">
         <div class="col">
