@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Studymate</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -20,20 +20,20 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
     <body>
-        <div id="app">
+        <div id="app" style="margin-bottom: 25px;">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container">
-                        <span class="navbar-brand" href="">Studymate</span>
+                        <span class="navbar-brand" href="/">Studymate</span>
 
                         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/') }}">Dashboard</a>
+                                <a class="nav-link" href="/">Dashboard</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/deadlines') }}">Deadline manager</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/admin') }}">Admin</a>
+                                <a class="nav-link" href="/admin">Admin</a>
                             </li>
                         </ul>
                         @guest
@@ -46,7 +46,6 @@
                     </div>
                 </div>
             </nav>
-
             <div class="container">
                 @yield('content')
             </div>

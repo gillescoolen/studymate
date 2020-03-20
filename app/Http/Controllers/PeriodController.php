@@ -14,6 +14,12 @@ class PeriodController extends Controller
         return view('dashboard', ['periods' => $periods]);
     }
 
+    public function destroy($id)
+    {
+        Period::find($id)->delete();
+        return redirect('/admin');
+    }
+
     public function store(Request $request)
     {
         Period::create($request->all());
