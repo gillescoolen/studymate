@@ -19,5 +19,5 @@
         </tbody>
     </table>
 @else
-    Geen vakken beschikbaar.
+    Er zijn geen Assessments of Tentamens beschikbaar.
 @endif

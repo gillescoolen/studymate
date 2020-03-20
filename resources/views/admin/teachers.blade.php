@@ -17,5 +17,5 @@
         </tbody>
     </table>
 @else
-    Geen vakken beschikbaar.
+    Er zijn geen docenten beschikbaar.
 @endif
