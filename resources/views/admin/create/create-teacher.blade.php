@@ -3,10 +3,10 @@
     @csrf
     <div class="form-row">
         <div class="col">
-            <input type="text" class="form-control" placeholder="voornaam" id="firstname" name="firstname">
+            <input type="text" class="form-control" placeholder="voornaam" id="firstname" name="firstname" required>
         </div>
         <div class="col">
-            <input type="text" class="form-control" placeholder="achternaam" id="lastname" name="lastname">
+            <input type="text" class="form-control" placeholder="achternaam" id="lastname" name="lastname" required>
         </div>
         <div class="col">
             <button id="submit" type="submit" class="btn btn-primary">Submit</button>
