@@ -5,14 +5,18 @@
             <tr>
                 <th scope="col">Periode</th>
                 <th scope="col">Semester</th>
+                <th scope="col">Acties</th>
             </tr>
         </thead>
         <tbody>
             @foreach($periods as $period)
-                    <tr>
-                        <td style="width: 25%">{{$period->period}}</td>
-                        <td style="width: 25%">{{$period->semester}}</td>
-                    </tr>
+                <tr>
+                    <td style="width: 40%">{{$period->period}}</td>
+                    <td style="width: 40%">{{$period->semester}}</td>
+                    <td style="width: 20%">
+                        <form action="{{ route('delete-period', $period->id) }}" method="POST">@csrf<button id="submit" type="submit" class="btn btn-danger">X</button></form>
+                    </td>
+                </tr>
             @endforeach
         </tbody>
     </table>
