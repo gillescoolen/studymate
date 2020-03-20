@@ -1,6 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if ($errors->any())
+    @foreach ($errors->all() as $error)
+        <div class="alert alert-danger">
+            {{ $error }}
+        </div>
+    @endforeach
+@endif
+
 <div class="row">
     <div class="col-8">
         <div class="row">
@@ -16,8 +25,11 @@
     </div>
     <div class="col-4">
         @include('admin.create.create-period')
+        <br>
         @include('admin.create.create-teacher')
+        <br>
         @include('admin.create.create-module')
+        <br>
         @include('admin.create.create-exam')
     </div>
 </div>

@@ -27,14 +27,20 @@
 
                         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" href="/">Dashboard</a>
+                                <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/admin">Deadline manager</a>
+                                <a class="nav-link" href="{{ route('admin') }}">Deadline manager</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/admin">Admin</a>
+                                <a class="nav-link" href="{{ route('admin') }}">Admin</a>
                             </li>
+                            @guest
+                            @else
+                                <li class="nav-item">
+                                <a class="nav-link" href="{{ route('logout') }}">Uitloggen</a>
+                                </li>
+                            @endguest
                         </ul>
                         @guest
                             <span class="nav-item">
