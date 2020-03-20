@@ -30,7 +30,7 @@
                                 <a class="nav-link" href="{{ url('/') }}">Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/admin') }}">Deadline manager</a>
+                                <a class="nav-link" href="{{ url('/deadlines') }}">Deadline manager</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/admin') }}">Admin</a>

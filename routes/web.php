@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,12 @@ Route::get('/', 'PeriodController@index');
 
 // Admin
 Route::get('/admin', 'AdminController@index');
+
+// Deadline Manager
+Route::get('/deadlines', 'DeadlineController@index');
+
+// Deadline
+Route::post('/add-deadline', 'DeadlineController@store');
 
 // Module
 Route::post('/add-module', 'ModuleController@store');
