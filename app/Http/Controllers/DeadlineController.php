@@ -21,4 +21,19 @@ class DeadlineController extends Controller
         Deadline::create($request->all());
         return redirect('/deadlines');
     }
+
+    public function update(Request $request, $id)
+    {
+        $deadline = Deadline::find($id);
+
+        $done = $request->input('done');
+
+        if ($done) {
+            $deadline->done = $done;
+            $deadline->save();
+        }
+
+        return redirect('/deadlines');
+    }
+
 }

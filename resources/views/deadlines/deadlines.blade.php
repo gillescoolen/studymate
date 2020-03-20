@@ -14,15 +14,16 @@
         </thead>
         <tbody>
             @foreach($deadlines as $deadline)
-                <form id="deadline-form" action="{{ action('DeadlineController@store') }}" method="POST">
+                <form id="deadline-form" action="{{ route('update-deadline', $deadline->id) }}" method="POST">
                     @CSRF
+                    @method('PATCH')
                     <tr>
                         <td style="width: 25%">{{$deadline->date}}</td>
                         <td style="width: 25%">{{$deadline->exam->name}}</td>
                         <td style="width: 25%">{{$deadline->exam->type->type}}</td>
                         <td style="width: 25%">{{$deadline->exam->module->teacher->firstname}}</td>
                         <td style="width: 25%">{{$deadline->tag}}</td>
-                        <td style="width: 25%"><input type="checkbox" name="done" value="{{$deadline->id}}"></td>
+                        <td style="width: 25%"><input type="checkbox" name="done" value="1" {{$deadline->done === 1 ? 'checked' : ''}}></td>
                         <td style="width: 25%"><button type="submit" class="btn btn-sm btn-primary">Save</button></td>
                     </tr>
                 </form>
