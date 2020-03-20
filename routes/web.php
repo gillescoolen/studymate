@@ -15,10 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', 'PeriodController@index');
+Route::get('/', 'PeriodController@index')->name('dashboard');
 
 // Admin
-Route::get('admin', 'AdminController@index');
+Route::get('admin', 'AdminController@index')->name('admin');;
 
 // Module
 Route::resource('module', 'ModuleController');
