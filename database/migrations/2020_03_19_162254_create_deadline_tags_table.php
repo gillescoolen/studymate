@@ -16,9 +16,9 @@ class CreateDeadlineTagsTable extends Migration
         Schema::create('deadline_tags', function (Blueprint $table) {
             $table->integer('deadline')->unsigned();
             $table->string('tag');
-            $table->foreign('deadline')->references('id')->on('deadlines')
+            $table->foreign('deadline')->references('id')->on('deadline')
                 ->onDelete('cascade');
-            $table->foreign('tag')->references('name')->on('tags')
+            $table->foreign('tag')->references('name')->on('tag')
                 ->onDelete('cascade');
         });
     }

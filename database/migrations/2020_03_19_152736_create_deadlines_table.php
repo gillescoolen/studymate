@@ -13,11 +13,11 @@ class CreateDeadlinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('deadlines', function (Blueprint $table) {
+        Schema::create('deadline', function (Blueprint $table) {
             $table->increments('id');
             $table->date('date');
-            $table->integer('final_id')->unsigned();
-            $table->foreign('final_id')->references('id')->on('final');
+            $table->integer('exam_id')->unsigned();
+            $table->foreign('exam_id')->references('id')->on('exam');
             $table->timestamps();
         });
     }

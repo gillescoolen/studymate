@@ -25,7 +25,7 @@ class Module extends Model
         return $this->belongsTo('App\Teacher');
     }
    
-    public function finals()
+    public function exams()
     {
         return $this->hasMany('App\Exam');
     }

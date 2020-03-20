@@ -11,10 +11,10 @@ class Deadline extends Model
 
     protected $fillable = [
         'date',
-        'final_id',
+        'exam_id',
     ];
 
-    public function final()
+    public function exam()
     {
         return $this->belongsTo('App\Exam');
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exam;
 use App\Deadline;
 use Illuminate\Http\Request;
 
@@ -9,9 +10,10 @@ class DeadlineController extends Controller
 {
     public function index()
     {
-        $periods = Deadline::all();
+        $exams = Exam::all();
+        $deadlines = Deadline::all();
 
-        return view('deadlines', ['periods' => $periods]);
+        return view('deadlines', ['exams' => $exams, 'deadlines' => $deadlines]);
     }
 
     public function store(Request $request)

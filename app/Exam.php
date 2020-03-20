@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Exam extends Model
 {
-    protected $table = 'final';
+    protected $table = 'exam';
     protected $primaryKey = 'id';
 
     protected $fillable = [
@@ -22,5 +22,9 @@ class Exam extends Model
 
     public function module() {
         return $this->belongsTo('App\Module');
+    }
+
+    public function deadline() {
+        return $this->hasOne('App\Deadline');
     }
 }
