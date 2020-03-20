@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exam;
+use App\Http\Requests\ExamRequest;
 use Illuminate\Http\Request;
 
 class ExamController extends Controller
@@ -33,8 +34,15 @@ class ExamController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ExamRequest $request)
     {
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'ec' => 'required|integer|min:0',
+            'module_id' => 'required',
+            'type_id' => 'required',
+        ]);
+
         Exam::create($request->all());
         return redirect('/admin');
     }

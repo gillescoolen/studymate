@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Module;
 use App\Period;
 use App\Teacher;
+use App\Http\Requests\ModuleRequest;
 use Illuminate\Http\Request;
 
 class ModuleController extends Controller
@@ -35,7 +36,7 @@ class ModuleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ModuleRequest $request)
     {
         Module::create($request->all());
         return redirect('/admin');

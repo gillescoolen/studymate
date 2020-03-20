@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Period;
+use App\Http\Requests\PeriodRequest;
 use Illuminate\Http\Request;
 
 class PeriodController extends Controller
@@ -34,7 +35,7 @@ class PeriodController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PeriodRequest $request)
     {
         Period::create($request->all());
         return redirect('/admin');
