@@ -44,7 +44,7 @@ class ExamController extends Controller
         ]);
 
         Exam::create($request->all());
-        return redirect('/admin');
+        return redirect()->route('admin')->with('message', 'New exam created successfully!');
     }
 
     /**

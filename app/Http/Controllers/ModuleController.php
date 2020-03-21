@@ -39,7 +39,7 @@ class ModuleController extends Controller
     public function store(ModuleRequest $request)
     {
         Module::create($request->all());
-        return redirect('/admin');
+        return redirect()->route('admin')->with('message', 'New module created successfully!');
     }
 
     /**
@@ -78,7 +78,7 @@ class ModuleController extends Controller
     public function update(Request $request, $id)
     {
         Module::find($id)->update($request->all());
-        return redirect('/admin');
+        return redirect()->route('admin')->with('message', 'New module updated successfully!');
     }
 
     /**
@@ -89,7 +89,7 @@ class ModuleController extends Controller
      */
     public function destroy($id)
     {
-        Module::find($id)->update($request->all());
-        return redirect('/admin');
+        Module::find($id)->delete();
+        return redirect()->route('admin')->with('message', 'New module deleted successfully!');
     }
 }

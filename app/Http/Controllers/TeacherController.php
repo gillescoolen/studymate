@@ -37,7 +37,8 @@ class TeacherController extends Controller
     public function store(TeacherRequest $request)
     {
         Teacher::create($request->all());
-        return redirect('/admin');
+        
+        return redirect()->route('admin')->with('message', 'New teacher created successfully!');
     }
 
     /**
@@ -59,7 +60,8 @@ class TeacherController extends Controller
      */
     public function edit($id)
     {
-        //
+        $teacher = Teacher::find($id);
+        return view('admin.edit.edit-teacher', ['teacher' => $teacher]);
     }
 
     /**
@@ -71,7 +73,8 @@ class TeacherController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Teacher::find($id)->update($request->all());
+        return redirect()->route('admin')->with('message', 'Teacher updated successfully!');
     }
 
     /**
@@ -82,6 +85,7 @@ class TeacherController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Teacher::find($id)->delete();
+        return redirect()->route('admin')->with('message', 'Teacher deleted successfully!');
     }
 }

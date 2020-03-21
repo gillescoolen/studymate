@@ -38,7 +38,7 @@ class PeriodController extends Controller
     public function store(PeriodRequest $request)
     {
         Period::create($request->all());
-        return redirect('/admin');
+        return redirect()->route('admin')->with('message', 'New period created successfully!');
     }
 
     /**
@@ -60,7 +60,8 @@ class PeriodController extends Controller
      */
     public function edit($id)
     {
-        //
+        $period = Period::find($id);
+        return view('admin.edit.edit-period', ['period' => $period]);
     }
 
     /**
@@ -72,7 +73,8 @@ class PeriodController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Period::find($id)->update($request->all());
+        return redirect()->route('admin')->with('message', 'Period updated successfully!');
     }
 
     /**
@@ -84,6 +86,6 @@ class PeriodController extends Controller
     public function destroy($id)
     {
         Period::find($id)->delete();
-        return redirect('/admin');
+        return redirect()->route('admin')->with('message', 'Period deleted successfully!');
     }
 }
