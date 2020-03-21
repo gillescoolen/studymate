@@ -13,7 +13,11 @@ class DeadlineController extends Controller
         $exams = Exam::doesntHave('deadline')->get();
         $deadlines = Deadline::with('exam')->get();
 
-        return view('deadlines', ['exams' => $exams, 'deadlines' => $deadlines]);
+        $collection = collect($deadlines);
+
+        $collection->sortBy('done');
+
+        return view('deadlines', ['exams' => $exams, 'deadlines' => $collection->values()->all()]);
     }
 
     public function store(Request $request)
@@ -26,13 +30,10 @@ class DeadlineController extends Controller
     {
         $deadline = Deadline::find($id);
 
-        $done = $request->input('done');
-
-        if ($done) {
-            $deadline->done = $done;
-            $deadline->save();
-        }
-
+        $done = $request->input('done') ? 1 : 0;
+        $deadline->done = $done;
+        $deadline->save();
+      
         return redirect('/deadlines');
     }
 

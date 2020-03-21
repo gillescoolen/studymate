@@ -3,7 +3,7 @@
 <table class="table">
     <thead class="thead-dark">
         <tr>
-            <th scope="col">Naam</th>
+            <th scope="col">Datum</th>
             <th scope="col">Vak</th>
             <th scope="col">Type</th>
             <th scope="col">Docent</th>
@@ -33,8 +33,8 @@
             </td>
             <td>
                 <form action="{{route('delete-deadline',[$deadline->id])}}" method="POST">
+                    @CSRF
                     @method('DELETE')
-                    @csrf
                     <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                 </form>
             </td>
