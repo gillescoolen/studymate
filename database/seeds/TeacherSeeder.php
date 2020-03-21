@@ -2,6 +2,7 @@
 
 use App\Teacher;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Crypt;
 
 class TeacherSeeder extends Seeder
 {
@@ -14,20 +15,20 @@ class TeacherSeeder extends Seeder
     {
         Teacher::insert([
             [
-                'firstname' => 'Luc',
-                'lastname' => 'Claessens'
+                'firstname' => Crypt::encryptString('Luc'),
+                'lastname' => Crypt::encryptString('Claessens')
             ],
             [
-                'firstname' => 'Rik',
-                'lastname' => 'Meijer'
+                'firstname' => Crypt::encryptString('Rik'),
+                'lastname' => Crypt::encryptString('Meijer')
             ],
             [
-                'firstname' => 'Vincent',
-                'lastname' => 'Kreuzen'
+                'firstname' => Crypt::encryptString('Vincent'),
+                'lastname' => Crypt::encryptString('Kreuzen')
             ],
             [
-                'firstname' => 'Erik',
-                'lastname' => 'Melsbach'
+                'firstname' => Crypt::encryptString('Erik'),
+                'lastname' => Crypt::encryptString('Melsbach')
             ],
         ]);
     }
