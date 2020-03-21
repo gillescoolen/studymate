@@ -26,7 +26,8 @@ Route::get('/deadlines', 'DeadlineController@index');
 
 // Deadline
 Route::post('deadline/create', 'DeadlineController@store');
-Route::patch('deadline/{id}/update', 'DeadlineController@update')->name('update-deadline');
+Route::patch('deadline/{id}', 'DeadlineController@update')->name('update-deadline');
+Route::delete('deadline/{id}', 'DeadlineController@destroy')->name('delete-deadline');
 
 // Module
 Route::get('module/{id}/edit', 'ModuleController@edit');

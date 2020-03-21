@@ -36,4 +36,10 @@ class DeadlineController extends Controller
         return redirect('/deadlines');
     }
 
+    public function destroy(Request $request, $id)
+    {
+        Deadline::destroy($id);
+
+        return redirect('/deadlines');
+    }
 }
