@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFinalsTable extends Migration
+class AddExamsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddFinalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('final', function (Blueprint $table) {
+        Schema::create('exam', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->integer('ec');
@@ -33,6 +33,6 @@ class AddFinalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('final');
+        Schema::dropIfExists('exam');
     }
 }

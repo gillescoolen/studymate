@@ -31,11 +31,6 @@
     </div>
     <div class="form-row">
         <div class="col">
-            <input type="date" class="form-control" placeholder="datum" id="date" name="date">
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="col">
             <button id="submit" type="submit" class="btn btn-primary">Submit</button>
         </div>
     </div>

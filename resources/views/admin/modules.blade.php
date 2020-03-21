@@ -32,5 +32,5 @@
         </tbody>
     </table>
 @else
-    Geen vakken beschikbaar.
+    Er zijn geen vakken beschikbaar.
 @endif

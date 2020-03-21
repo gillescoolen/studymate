@@ -1,9 +1,9 @@
 <?php
 
-use App\Role;
 use Illuminate\Database\Seeder;
 
-class RoleSeeder extends Seeder
+use App\Type;
+class TypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,9 +12,9 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        Role::insert([
-            ['role' => 'admin'],
-            ['role' => 'manager']
+        Type::insert([
+            ['type' => 'Assessment'],
+            ['type' => 'Tentamen']
         ]);
     }
 }

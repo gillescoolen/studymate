@@ -6,20 +6,18 @@
                 <th scope="col">Naam</th>
                 <th scope="col">Vak</th>
                 <th scope="col">Type</th>
-                <th scope="col">Datum</th>
             </tr>
         </thead>
         <tbody>
             @foreach($exams as $exam)
                     <tr>
-                        <td style="width: 25%">{{$exam->name}}</td>
-                        <td style="width: 25%">{{$exam->module->name}}</td>
-                        <td style="width: 25%">{{$exam->type->type}}</td>
-                        <td style="width: 25%">{{$exam->date}}</td>
+                        <td style="width: 33%">{{$exam->name}}</td>
+                        <td style="width: 33%">{{$exam->module->name}}</td>
+                        <td style="width: 33%">{{$exam->type->type}}</td>
                     </tr>
             @endforeach
         </tbody>
     </table>
 @else
-    Geen vakken beschikbaar.
+    Er zijn geen Assessments of Tentamens beschikbaar.
 @endif
