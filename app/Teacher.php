@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Database\Eloquent\Model;
 
 class Teacher extends Model
@@ -16,5 +17,21 @@ class Teacher extends Model
 
     public function modules() {
         return $this->hasMany('App\Teacher');
+    }
+
+    public function setFirstnameAttribute($string) {
+        $this->attributes['firstname'] = Crypt::encryptString($string);
+    }
+
+    public function setLastnameAttribute($string) {
+        $this->attributes['lastname'] = Crypt::encryptString($string);
+    }
+
+    public function getFirstnameAttribute($string) {
+        return Crypt::decryptString($string);
+    }
+
+    public function getLastnameAttribute($string) {
+        return Crypt::decryptString($string);
     }
 }
