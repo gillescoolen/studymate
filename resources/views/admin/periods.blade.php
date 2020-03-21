@@ -11,10 +11,15 @@
         <tbody>
             @foreach($periods as $period)
                 <tr>
-                    <td style="width: 40%">{{$period->period}}</td>
-                    <td style="width: 40%">{{$period->semester}}</td>
-                    <td style="width: 20%">
-                        <form action="{{ route('delete-period', $period->id) }}" method="POST">@csrf<button id="submit" type="submit" class="btn btn-danger">X</button></form>
+                    <td style="width: 30%">{{$period->period}}</td>
+                    <td style="width: 30%">{{$period->semester}}</td>
+                    <td style="width: 40%">
+                        <form action="{{ route('period.destroy', $period->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <a class="btn btn-warning" href="{{ route('period.edit', $period->id) }}">Edit</a>
+                            <button id="submit" type="submit" class="btn btn-danger">X</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

@@ -29,4 +29,8 @@ class Module extends Model
     {
         return $this->hasMany('App\Exam');
     }
+
+    public function getModuleTotalAttribute() {
+        return $this->exams()->sum('ec');
+    }
 }

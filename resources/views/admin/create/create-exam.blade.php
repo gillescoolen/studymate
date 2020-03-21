@@ -1,17 +1,17 @@
 <h4>Voeg tentamen/assessment toe</h4>
-<form id="create-form" action="{{ action('ExamController@store') }}" method="POST">
+<form id="create-form" action="{{ route('exam.store') }}" method="POST">
     @csrf
     <div class="form-row">
         <div class="col">
-            <input type="text" class="form-control" placeholder="examen naam" id="name" name="name">
+            <input type="text" class="form-control" placeholder="examen naam" id="name" name="name" required>
         </div>
         <div class="col">
-            <input type="number" class="form-control" placeholder="ec" id="ec" name="ec">
+            <input type="number" class="form-control" placeholder="ec" id="ec" name="ec" required min="0">
         </div>
     </div>
     <div class="form-row">
         <div class="col">
-            <select class="form-control" id="module_id" name="module_id">
+            <select class="form-control" id="module_id" name="module_id" required>
                 @if(count($modules) > 0)
                     @foreach($modules as $module)
                         <option value="{{$module->id}}">Module: {{$module->name}}</option>
@@ -35,3 +35,4 @@
         </div>
     </div>
 </form>
+<br>

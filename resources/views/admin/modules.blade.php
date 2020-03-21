@@ -19,8 +19,13 @@
                     <td style="width: 10%">{{$module->ec}}</td>
                     <td style="width: 10%">{{$module->period->period}}</td>
                     <td style="width: 10%">{{$module->period->semester}}</td>
-                    <td style="width: 10%">
-                        <a class="btn btn-warning" href="/module/{{$module->id}}/edit">Edit</a>
+                    <td style="width: 25%">
+                        <form action="{{ route('module.destroy', $module->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <a class="btn btn-warning" href="{{ route('module.edit', $module->id) }}">Edit</a>
+                            <button id="submit" type="submit" class="btn btn-danger">X</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
@@ -29,25 +34,3 @@
 @else
     Er zijn geen vakken beschikbaar.
 @endif
-
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-

@@ -4,8 +4,9 @@
     <div class="card-header"><h3>{{$module->name}}</h3></div>
     <div class="card">
         <div class="card-body">
-            <form id="create-form" action="{{ route('update-module', $module->id) }}" method="POST">
+            <form id="create-form" action="{{ route('module.update', $module->id) }}" method="POST">
                 @csrf
+                @method('PUT')
                 <div class="form-row">
                     <div class="col">
                         <input type="text" class="form-control" value="{{old('name', $module->name)}}" placeholder="name" id="name" name="name">
