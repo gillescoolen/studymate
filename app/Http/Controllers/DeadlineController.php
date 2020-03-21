@@ -4,26 +4,49 @@ namespace App\Http\Controllers;
 
 use App\Exam;
 use App\Deadline;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class DeadlineController extends Controller
 {
     public function index()
     {
-        $exams = Exam::doesntHave('deadline')->get();
+        $tags = Tag::all();
         $deadlines = Deadline::with('exam')->get();
+        $exams = Exam::doesntHave('deadline')->get();
 
-        $collection = collect($deadlines);
+        $collection = collect();
 
-        $collection->sortBy('done');
+        foreach ($deadlines as $deadline) {
+            $collection->push([
+                'id' => $deadline->id,
+                'date' => $deadline->date,
+                'exam' => $deadline->exam->name,
+                'module' => $deadline->exam->module->name,
+                'teacher' => $deadline->exam->module->teacher->firstname,
+                'done' => $deadline->done,
+                'tags' => $deadline->tags
+            ]);
+        }
 
-        return view('deadlines', ['exams' => $exams, 'deadlines' => $collection->values()->all()]);
+        isset($_GET['sort']) && $collection = $collection->sortBy($_GET['sort']);
+
+        return view('deadlines', ['exams' => $exams, 'tags' => $tags, 'deadlines' => $collection]);
     }
 
     public function store(Request $request)
     {
-        Deadline::create($request->all());
+        $deadline = Deadline::create($request->all());
+        $deadline->tags()->sync($request->tags);
         return redirect('/deadlines');
+    }
+
+    public function edit($id)
+    {
+        $tags = Tag::all();
+        $deadline = Deadline::find($id);
+        
+        return view('deadline', ['tags' => $tags, 'deadline' => $deadline]);
     }
 
     public function update(Request $request, $id)
@@ -32,8 +55,11 @@ class DeadlineController extends Controller
 
         $done = $request->input('done') ? 1 : 0;
         $deadline->done = $done;
+
+        $deadline->tags()->sync($request->tags);
+
         $deadline->save();
-      
+
         return redirect('/deadlines');
     }
 
