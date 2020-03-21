@@ -15,26 +15,30 @@
     </thead>
     <tbody>
         @foreach($deadlines as $deadline)
-        <form id="deadline-form" action="{{ route('update-deadline', $deadline->id) }}" method="POST">
-            @CSRF
-            @method('PATCH')
-            <tr>
-                <td>{{$deadline->date}}</td>
-                <td>{{$deadline->exam->name}}</td>
-                <td>{{$deadline->exam->type->type}}</td>
-                <td>{{$deadline->exam->module->teacher->firstname}}</td>
-                <td>{{$deadline->tag}}</td>
-                <td><input type="checkbox" name="done" value="1" {{$deadline->done === 1 ? 'checked' : ''}}></td>
-                <td><button type="submit" class="btn btn-sm btn-primary">Save</button></td>
-                <td>
-                    <form action="{{route('delete-deadline',[$deadline->id])}}" method="POST">
-                        @method('DELETE')
-                        @csrf
-                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                    </form>
-                </td>
-            </tr>
-        </form>
+
+        <tr>
+            <td>{{$deadline->date}}</td>
+            <td>{{$deadline->exam->name}}</td>
+            <td>{{$deadline->exam->type->type}}</td>
+            <td>{{$deadline->exam->module->teacher->firstname}}</td>
+            <td>{{$deadline->tag}}</td>
+            <td>
+                <form id="deadline-form" action="{{ route('update-deadline', $deadline->id) }}" method="POST">
+                    @CSRF
+                    @method('PATCH')
+                    <input type="checkbox" name="done" value="1" {{$deadline->done === 1 ? 'checked' : ''}}>
+
+                    <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                </form>
+            </td>
+            <td>
+                <form action="{{route('delete-deadline',[$deadline->id])}}" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
         @endforeach
     </tbody>
 </table>
