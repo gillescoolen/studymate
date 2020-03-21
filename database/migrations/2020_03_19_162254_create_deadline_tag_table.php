@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDeadlineTagsTable extends Migration
+class CreateDeadlineTagTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateDeadlineTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('deadline_tags', function (Blueprint $table) {
-            $table->integer('deadline')->unsigned();
-            $table->string('tag');
-            $table->foreign('deadline')->references('id')->on('deadline')
+        Schema::create('deadline_tag', function (Blueprint $table) {
+            $table->integer('deadline_id')->unsigned();
+            $table->foreign('deadline_id')->references('id')->on('deadline')
                 ->onDelete('cascade');
-            $table->foreign('tag')->references('name')->on('tag')
+                
+            $table->string('tag_name');
+            $table->foreign('tag_name')->references('name')->on('tag')
                 ->onDelete('cascade');
         });
     }
