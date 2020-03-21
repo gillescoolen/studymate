@@ -21,13 +21,8 @@ Route::get('/', 'PeriodController@index')->name('dashboard');
 // Admin
 Route::get('admin', 'AdminController@index')->name('admin');;
 
-// Deadline Manager
-Route::get('/deadlines', 'DeadlineController@index');
-
 // Deadline
-Route::post('deadline/create', 'DeadlineController@store');
-Route::patch('deadline/{id}/update', 'DeadlineController@update')->name('update-deadline');
-Route::delete('deadline/{id}/destroy', 'DeadlineController@destroy')->name('delete-deadline');
+Route::resource('deadline', 'DeadlineController');
 
 // Module
 Route::resource('module', 'ModuleController');

@@ -30,6 +30,6 @@ class CreateDeadlinesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('deadlines');
+        Schema::dropIfExists('deadline');
     }
 }

@@ -11,6 +11,7 @@
             <th scope="col"><a href="?sort=done">Voldaan</a></th>
             <th scope="col"></th>
             <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
@@ -21,17 +22,18 @@
             <td>{{$deadline['exam']}}</td>
             <td>{{$deadline['module']}}</td>
             <td>{{$deadline['teacher']}}</td>
-            <form id="deadline-form" action="{{ route('update-deadline', $deadline['id']) }}" method="POST">
+            <td>
+                @if(count($deadline['tags']) > 0)
+                    @foreach($deadline['tags'] as $tag)
+                        <span class="badge badge-primary">{{$tag->name}}</span>
+                    @endforeach
+                @endif
+            </td>
+            <form id="deadline-form" action="{{ route('deadline.update', $deadline['id']) }}" method="POST">
+                @CSRF
+                @method('PATCH')
                 <td>
-                    @if(count($deadline['tags']) > 0)
-                        @foreach($deadline['tags'] as $tag)
-                            <span class="badge badge-primary">{{$tag->name}}</span>
-                        @endforeach
-                    @endif
-                </td>
-                <td>
-                    @CSRF
-                    @method('PATCH')
+                   
                     <input type="checkbox" name="done" value="1" {{$deadline['done'] === 1 ? 'checked' : ''}}>
                 </td>
                 <td>
@@ -39,7 +41,14 @@
                 </td>
             </form>
             <td>
-                <a href="/deadlines/edit" class="btn btn-sm btn-primary">Edit</button>
+                <a class="btn btn-sm btn-warning" href="{{ route('deadline.edit', $deadline['id']) }}">Edit</a>
+            </td>
+            <td>
+                <form action="{{ route('deadline.destroy', $deadline['id']) }}" method="POST">
+                    @CSRF
+                    @method('DELETE')
+                    <button id="submit" type="submit" class="btn btn-sm btn-danger">X</button>
+                </form>
             </td>
         </tr>
         @endforeach

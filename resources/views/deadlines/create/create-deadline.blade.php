@@ -1,6 +1,6 @@
 @if(count($exams) > 0)
 <h4>Voeg een deadline toe</h4>
-<form id="create-form" action="{{ action('DeadlineController@store') }}" method="POST">
+<form id="create-form" action="{{ route('deadline.store') }}" method="POST">
     @csrf
     <div class="form-row">
         <div class="col-6">
