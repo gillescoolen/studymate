@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Gate;
 use App\Tag;
 use App\Exam;
 use App\Deadline;
@@ -12,10 +11,6 @@ class DeadlineController extends Controller
 {
     public function index()
     {
-        // if (Gate::denies('manager')) {
-        //     return redirect(url('/login'));
-        // }
-
         $tags = Tag::all();
         $deadlines = Deadline::with('exam')->get();
         $exams = Exam::doesntHave('deadline')->get();

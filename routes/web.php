@@ -18,23 +18,27 @@ Auth::routes();
 
 Route::get('/', 'PeriodController@index')->name('dashboard');
 
-// Admin
-Route::get('admin', 'AdminController@index')->name('admin');;
+Route::group(['middleware' => ['role:admin']], function () {
+    // Admin
+    Route::get('admin', 'AdminController@index')->name('admin');
+    
+    // Module
+    Route::resource('module', 'ModuleController');
+
+    // Period
+    Route::resource('period', 'PeriodController');
+
+    // Teacher
+    Route::resource('teacher', 'TeacherController');
+
+    // Exam
+    Route::resource('exam', 'ExamController');
+});
+
 
 // Deadline
-Route::resource('deadline', 'DeadlineController');
+Route::resource('deadline', 'DeadlineController')->middleware('role:manager');
 
-// Module
-Route::resource('module', 'ModuleController');
-
-// Period
-Route::resource('period', 'PeriodController');
-
-// Teacher
-Route::resource('teacher', 'TeacherController');
-
-// Exam
-Route::resource('exam', 'ExamController');
 
 // Logout
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
