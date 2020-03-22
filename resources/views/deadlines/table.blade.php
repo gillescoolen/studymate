@@ -55,5 +55,5 @@
     </tbody>
 </table>
 @else
-Geen vakken beschikbaar.
+Geen deadlines beschikbaar.
 @endif
