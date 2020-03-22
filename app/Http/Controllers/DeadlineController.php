@@ -53,9 +53,10 @@ class DeadlineController extends Controller
 
         $deadlineTags = [];
 
-        foreach ($deadline->tags as $tag) {
-            array_push($deadlineTags, $tag->name);
+        if ($deadline->tags) {
+            foreach ($deadline->tags as $tag) array_push($deadlineTags, $tag->name);
         }
+
         
         return view('deadlines.edit.edit-deadline', ['tags' => $tags, 'deadlineTags' => $deadlineTags, 'deadline' => $deadline]);
     }
