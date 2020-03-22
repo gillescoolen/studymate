@@ -14,17 +14,17 @@ class DeadlineSeeder extends Seeder
     {
         Deadline::insert([
             [
-                'date' => '2020-03-31',
+                'date' => '2020-01-31',
                 'done' => '0',
                 'exam_id' => '1',
             ],
             [
-                'date' => '2020-03-29',
+                'date' => '2020-01-29',
                 'done' => '0',
                 'exam_id' => '2',
             ],
             [
-                'date' => '2020-03-27',
+                'date' => '2020-01-27',
                 'done' => '0',
                 'exam_id' => '3',
             ]

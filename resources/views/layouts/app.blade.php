@@ -38,7 +38,7 @@
                             @guest
                             @else
                                 <li class="nav-item">
-                                <a class="nav-link" href="{{ route('logout') }}">Uitloggen</a>
+                                <a class="nav-link" dusk="logout" href="{{ route('logout') }}">Uitloggen</a>
                                 </li>
                             @endguest
                         </ul>

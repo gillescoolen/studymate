@@ -63,7 +63,7 @@ class DeadlineController extends Controller
         $done = $request->input('done') ? 1 : 0;
         
         $deadline->done = $done;
-
+        $request->date && $deadline->date = $request->date;
         $request->tags && $deadline->tags()->sync($request->tags);
 
         $deadline->save();
