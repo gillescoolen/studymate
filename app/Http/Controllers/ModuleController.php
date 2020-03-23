@@ -13,10 +13,10 @@ class ModuleController extends Controller
     public function store(ModuleRequest $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255|filled',
-            'ec' => 'required|integer|filled',
-            'period_id' => 'required|integer|filled',
-            'teacher_id' => 'required|integer|filled'
+            'name' => 'required|string|max:255|min:1|filled',
+            'ec' => 'required|integer|filled|gt:0',
+            'period_id' => 'required|integer|filled|gt:0',
+            'teacher_id' => 'required|integer|filled|gt:0'
         ]);
 
         Module::create($request->all());
@@ -35,10 +35,10 @@ class ModuleController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string|max:255|filled',
-            'ec' => 'required|integer|filled',
-            'period_id' => 'required|integer|filled',
-            'teacher_id' => 'required|integer|filled'
+            'name' => 'required|string|max:255|min:1|filled',
+            'ec' => 'required|integer|filled|gt:0',
+            'period_id' => 'required|integer|filled|gt:0',
+            'teacher_id' => 'required|integer|filled|gt:0'
         ]);
 
         Module::find($id)->update($request->all());
