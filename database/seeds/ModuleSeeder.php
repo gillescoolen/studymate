@@ -36,6 +36,12 @@ class ModuleSeeder extends Seeder
                 'ec' => 2,
                 'period_id' => 4,
                 'teacher_id' => 4,
+            ],
+            [
+                'name' => 'EPRES',
+                'ec' => 2,
+                'period_id' => 1,
+                'teacher_id' => 1,
             ]
         ]);
     }
