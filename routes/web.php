@@ -19,26 +19,28 @@ Auth::routes();
 Route::get('/', 'PeriodController@index')->name('dashboard');
 
 Route::group(['middleware' => ['role:admin']], function () {
-    // Admin
+    
     Route::get('admin', 'AdminController@index')->name('admin');
     
-    // Module
-    Route::resource('module', 'ModuleController');
+    Route::resource('module', 'ModuleController')->except([
+        'index', 'create', 'show'
+    ]);;
 
-    // Period
-    Route::resource('period', 'PeriodController');
+    Route::resource('period', 'PeriodController')->except([
+        'index', 'create', 'show'
+    ]);;
 
-    // Teacher
-    Route::resource('teacher', 'TeacherController');
+    Route::resource('teacher', 'TeacherController')->except([
+        'index', 'create', 'show'
+    ]);;
 
-    // Exam
-    Route::resource('exam', 'ExamController');
+    Route::resource('exam', 'ExamController')->except([
+        'index', 'create', 'show'
+    ]);
 });
 
+Route::resource('deadline', 'DeadlineController')->middleware('role:manager')->except([
+    'create', 'show'
+]);;
 
-// Deadline
-Route::resource('deadline', 'DeadlineController')->middleware('role:manager');
-
-
-// Logout
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
