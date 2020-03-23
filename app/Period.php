@@ -24,6 +24,11 @@ class Period extends Model
         return $this->modules()->sum('ec');
     }
 
+    /**
+     * Get percentage of received EC.
+     *
+     * @return float
+     */
     public function getPercentageAttribute()
     {
         $ec = 0;
@@ -44,6 +49,8 @@ class Period extends Model
 
     /**
      * Filter the passed modules from the un-passed modules.
+     * 
+     * @return array
      */
     private function filterCompleted($modules) {
         return array_filter($modules, function($module) {
