@@ -18,7 +18,8 @@ class CreateDeadlinesTable extends Migration
             $table->date('date');
             $table->integer('exam_id')->unsigned();
             $table->boolean('done')->default(0);
-            $table->foreign('exam_id')->references('id')->on('exam');
+            $table->foreign('exam_id')->references('id')->on('exam')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
