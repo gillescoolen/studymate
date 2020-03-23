@@ -19,51 +19,36 @@ class Period extends Model
         return $this->hasMany('App\Module');
     }
 
-    // public function getPercentageAttribute()
-    // {
-    //     $modules = $this->modules;
-    //     $exams = 0;
-    //     $passed = 0;
-
-    //     foreach ($modules as $module) {
-    //         $exams += $module->exams()->count();
-    //         $passed += $module->exams()->where('grade', '>=', 5.5)->count('grade');
-    //     }
-
-    //     if ($exams === 0) {
-    //         return 0;
-    //     }
-
-    //     $result = ($passed / $exams) * 100;
-
-    //     return $result;
-    // }
+    public function getEcAttribute()
+    {
+        return $this->modules()->sum('ec');
+    }
 
     public function getPercentageAttribute()
     {
-        $modules = $this->modules;
-        $completedModules = $this->filterCompleted($modules->all());
-
         $ec = 0;
+        $modules = $this->modules;
+
         $completedEc = 0;
+        $completedModules = $this->filterCompleted($modules->all());
 
         foreach ($modules as $module) $ec += $module->ec;
         
         foreach ($completedModules as $module) $completedEc += $module->ec;
 
+        // Stop if there is no EC to devide with.
         if ($ec === 0) return $ec;
 
         return ($completedEc / $ec) * 100;
     }
 
+    /**
+     * Filter the passed modules from the un-passed modules.
+     */
     private function filterCompleted($modules) {
         return array_filter($modules, function($module) {
             return $module->grade !== null && $module->grade >= 5.5;
         });
     }
 
-    public function getEcAttribute()
-    {
-        return $this->modules()->sum('ec');
-    }
 }

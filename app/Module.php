@@ -32,10 +32,9 @@ class Module extends Model
 
     public function getGradeAttribute()
     {
-        if ($this->exams()->where('grade', '=', null)->count() > 0) {
-            return null;
-        }
-
-        return $this->exams()->sum('grade') / $this->exams()->count('grade');
+        // Stop if there are no grades.
+        if ($this->exams()->where('grade', '=', null)->count() > 0) return null;
+            
+        return $this->exams()->sum('grade') / $this->exams()->where('grade', '!=', null)->count('grade');
     }
 }
