@@ -20,10 +20,10 @@
             </select>
         </div>
         <div class="col">
-            <select class="form-control" id="type_id" name="type_id" required>
+            <select class="form-control" id="type" name="type" required>
                 @if(count($types) > 0)
                     @foreach($types as $type)
-                        <option value="{{$type->id}}">{{$type->type}}</option>
+                        <option value="{{$type->id}}">{{$type}}</option>
                     @endforeach
                 @endif
             </select>

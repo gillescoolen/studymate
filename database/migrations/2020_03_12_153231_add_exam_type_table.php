@@ -14,9 +14,7 @@ class AddExamTypeTable extends Migration
     public function up()
     {
         Schema::create('type', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('type');
-            $table->timestamps();
+            $table->string('type')->primary();
         });
     }
 

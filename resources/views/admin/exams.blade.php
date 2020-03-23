@@ -14,7 +14,7 @@
                     <tr>
                         <td style="width: 25%">{{$exam->name}}</td>
                         <td style="width: 25%">{{$exam->module->name}}</td>
-                        <td style="width: 25%">{{$exam->type->type}}</td>
+                        <td style="width: 25%">{{$exam->type}}</td>
                         <td style="width: 25%">
                         <form action="{{ route('exam.destroy', $exam->id) }}" method="POST">
                             @csrf

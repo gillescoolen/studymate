@@ -29,7 +29,7 @@
                         <select class="form-control" id="type_id" name="type_id" required>
                             @if(count($types) > 0)
                                 @foreach($types as $type)
-                                    <option value="{{$type->id}}" {{ old('type', $exam->type->type) == $type->type ? 'selected' : '' }}>type: {{$type->type}}</option>
+                                    <option value="{{$type->id}}" {{ old('type', $exam->type) == $type ? 'selected' : '' }}>Type: {{$type-}}</option>
                                 @endforeach
                             @endif
                         </select>

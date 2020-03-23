@@ -13,7 +13,7 @@ class Exam extends Model
         'name',
         'ec',
         'module_id',
-        'type_id',
+        'type',
     ];
 
     public function type() {

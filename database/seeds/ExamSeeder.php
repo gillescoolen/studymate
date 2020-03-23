@@ -17,25 +17,25 @@ class ExamSeeder extends Seeder
                 'name' => 'PHP',
                 'ec' => 4,
                 'module_id' => 2,
-                'type_id' => 2,
+                'type' => 'Tentamen',
             ],
             [
                 'name' => 'Regex',
                 'ec' => 4,
                 'module_id' => 3,
-                'type_id' => 1,
+                'type' => 'Tentamen',
             ],
             [
                 'name' => 'Project',
                 'ec' => 8,
                 'module_id' => 1,
-                'type_id' => 2,
+                'type' => 'Assessment',
             ],
             [
                 'name' => 'SLC Verslag',
                 'ec' => 2,
                 'module_id' => 4,
-                'type_id' => 2,
+                'type' => 'Assessment',
             ],
         ]);
     }

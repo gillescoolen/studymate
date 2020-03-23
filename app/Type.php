@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Type extends Model
 {
     protected $table = 'type';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'type';
 
     public function exam()
     {
