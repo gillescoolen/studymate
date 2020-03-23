@@ -1,4 +1,4 @@
-<h4>Voeg tentamen/assessment toe</h4>
+<h4>Voeg examen toe</h4>
 <form id="create-form" action="{{ route('exam.store') }}" method="POST">
     @csrf
     <div class="form-row">
@@ -20,7 +20,7 @@
             </select>
         </div>
         <div class="col">
-            <select class="form-control" id="type_id" name="type_id">
+            <select class="form-control" id="type_id" name="type_id" required>
                 @if(count($types) > 0)
                     @foreach($types as $type)
                         <option value="{{$type->id}}">{{$type->type}}</option>
