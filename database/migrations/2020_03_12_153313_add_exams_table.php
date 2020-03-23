@@ -18,7 +18,8 @@ class AddExamsTable extends Migration
             $table->string('name');
             $table->integer('ec');
             $table->integer('module_id')->unsigned();
-            $table->foreign('module_id')->references('id')->on('module');
+            $table->foreign('module_id')->references('id')->on('module')
+                ->onDelete('cascade');
             $table->string('type');
             $table->foreign('type')->references('type')->on('type');
             $table->timestamps();
