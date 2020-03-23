@@ -58,7 +58,7 @@ class Period extends Model
 
     private function filterCompleted($modules) {
         return array_filter($modules, function($module) {
-            return $module->grade !== null;
+            return $module->grade !== null && $module->grade >= 5.5;
         });
     }
 
