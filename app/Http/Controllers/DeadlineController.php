@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Gate;
 use App\Tag;
 use App\Exam;
 use App\Deadline;
@@ -12,10 +11,6 @@ class DeadlineController extends Controller
 {
     public function index()
     {
-        // if (Gate::denies('manager')) {
-        //     return redirect(url('/login'));
-        // }
-
         $tags = Tag::all();
         $deadlines = Deadline::with('exam')->get();
         $exams = Exam::doesntHave('deadline')->get();
@@ -41,6 +36,13 @@ class DeadlineController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'date' => 'required|date|filled',
+            'tags' => 'array|filled',
+            'tags.name' => 'string|filled',
+            'exam_id' => 'required|integer'
+        ]);
+
         $deadline = Deadline::create($request->all());
         $deadline->tags()->sync($request->tags);
         return redirect('/deadline');
@@ -53,8 +55,8 @@ class DeadlineController extends Controller
 
         $deadlineTags = [];
 
-        foreach ($deadline->tags as $tag) {
-            array_push($deadlineTags, $tag->name);
+        if ($deadline->tags) {
+            foreach ($deadline->tags as $tag) array_push($deadlineTags, $tag->name);
         }
         
         return view('deadlines.edit.edit-deadline', ['tags' => $tags, 'deadlineTags' => $deadlineTags, 'deadline' => $deadline]);
@@ -62,12 +64,19 @@ class DeadlineController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'date' => 'date|filled',
+            'tags' => 'array|filled',
+            'done' => 'boolean|filled',
+            'tags.name' => 'string|filled'
+        ]);
+
         $deadline = Deadline::find($id);
 
         $done = $request->input('done') ? 1 : 0;
         
         $deadline->done = $done;
-
+        $request->date && $deadline->date = $request->date;
         $request->tags && $deadline->tags()->sync($request->tags);
 
         $deadline->save();

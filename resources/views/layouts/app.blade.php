@@ -38,7 +38,7 @@
                             @guest
                             @else
                                 <li class="nav-item">
-                                <a class="nav-link" href="{{ route('logout') }}">Uitloggen</a>
+                                <a class="nav-link" dusk="logout" href="{{ route('logout') }}">Uitloggen</a>
                                 </li>
                             @endguest
                         </ul>
@@ -53,6 +53,15 @@
                 </div>
             </nav>
             <div class="container">
+                @if ($errors->any())
+                    <div dusk="error" class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 @yield('content')
             </div>
         </div>
