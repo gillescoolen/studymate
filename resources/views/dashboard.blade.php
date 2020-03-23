@@ -3,9 +3,11 @@
 @section('content')
 @if(count($periods) > 0)
     @foreach($periods as $period)
-        <h3>Blok {{$period->period}} - Semester {{$period->semester}}</h3> Te behalen EC: {{$period->percentage}}
+        <h3>Blok {{$period->period}} - Semester {{$period->semester}}</h3> Te behalen EC: {{$period->ec}}
         <div class="progress">
             <div class="progress-bar" role="progressbar" aria-valuenow="{{$period->percentage}}" style="width: {{$period->percentage}}%" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div>
         </div>
         <table class="table">
             <thead class="thead-dark">
@@ -14,7 +16,6 @@
                   <th scope="col">EC</th>
                   <th scope="col">Docent</th>
                   <th scope="col">Behaald cijfer</th>
-                  <th scope="col">Totaal EC</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,7 +31,6 @@
                                 -
                             @endif
                         </td>
-                        <td>{{$module->ModuleTotal}}</td>
                     </tr>
                 @endforeach
             </tbody>

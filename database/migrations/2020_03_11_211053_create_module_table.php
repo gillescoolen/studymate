@@ -17,7 +17,6 @@ class CreateModuleTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('ec');
-            $table->integer('grade')->nullable();
             $table->integer('period_id')->unsigned();
             $table->foreign('period_id')->references('id')->on('period')
                 ->onDelete('cascade');

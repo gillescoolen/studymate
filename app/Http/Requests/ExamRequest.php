@@ -25,7 +25,7 @@ class ExamRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255|filled|min:1',
-            'ec' => 'required|integer|filled|gt:0',
+            'grade' => 'numeric|filled|between:1,10',
             'type' => 'required|filled|max:255|min:1',
             'module_id' => 'required|filled|min:0',
         ];

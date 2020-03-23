@@ -14,13 +14,41 @@ class Period extends Model
         'period',
     ];
 
-    public function modules() {
+    public function modules()
+    {
         return $this->hasMany('App\Module');
+    }
+
+    public function getEcAttribute()
+    {
+        return $this->modules()->sum('ec');
     }
 
     public function getPercentageAttribute()
     {
-        //return $this->modules()->sum('ec');
-        return 75;
+        $ec = 0;
+        $modules = $this->modules;
+
+        $completedEc = 0;
+        $completedModules = $this->filterCompleted($modules->all());
+
+        foreach ($modules as $module) $ec += $module->ec;
+        
+        foreach ($completedModules as $module) $completedEc += $module->ec;
+
+        // Stop if there is no EC to devide with.
+        if ($ec === 0) return $ec;
+
+        return ($completedEc / $ec) * 100;
     }
+
+    /**
+     * Filter the passed modules from the un-passed modules.
+     */
+    private function filterCompleted($modules) {
+        return array_filter($modules, function($module) {
+            return $module->grade !== null && $module->grade >= 5.5;
+        });
+    }
+
 }

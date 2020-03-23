@@ -16,7 +16,7 @@ class AddExamsTable extends Migration
         Schema::create('exam', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('ec');
+            $table->float('grade')->nullable();
             $table->integer('module_id')->unsigned();
             $table->foreign('module_id')->references('id')->on('module')
                 ->onDelete('cascade');
