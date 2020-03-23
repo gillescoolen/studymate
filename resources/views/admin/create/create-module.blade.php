@@ -15,7 +15,7 @@
             <select class="form-control" id="period_id" name="period_id" required>
                 @if(count($periods) > 0)
                     @foreach($periods as $period)
-                        <option value="{{$period->id}}">Periode: {{$period->period}}</option>
+                        <option value="{{$period->id}}">Periode: {{$period->period}} Semester: {{$period->semester}}</option>
                     @endforeach
                 @endif
             </select>

@@ -20,7 +20,7 @@
                         <select class="form-control" id="period_id" name="period_id" required>
                             @if(count($periods) > 0)
                                 @foreach($periods as $period)
-                                    <option value="{{$period->id}}" {{ old('period', $module->period->period) == $period->period ? 'selected' : '' }}>Periode: {{$period->period}}</option>
+                                    <option value="{{$period->id}}" {{ old('period', $module->period->period) == $period->period ? 'selected' : '' }}>Periode: {{$period->period}} Semester: {{$period->semester}}</option>
                                 @endforeach
                             @endif
                         </select>
