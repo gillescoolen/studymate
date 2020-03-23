@@ -23,8 +23,8 @@
                         <form action="{{ route('module.destroy', $module->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <a class="btn btn-warning" href="{{ route('module.edit', $module->id) }}">Edit</a>
-                            <button id="submit" type="submit" class="btn btn-danger">X</button>
+                            <a class="btn btn-sm btn-warning" href="{{ route('module.edit', $module->id) }}">Edit</a>
+                            <button id="submit" type="submit" class="btn btn-sm btn-danger">X</button>
                         </form>
                     </td>
                 </tr>
