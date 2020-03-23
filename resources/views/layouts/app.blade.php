@@ -54,14 +54,19 @@
             </nav>
             <div class="container">
                 @if ($errors->any())
-                    <div dusk="error" class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+                    @foreach ($errors->all() as $error)
+                        <div dusk="error" class="alert alert-danger">
+                            {{ $error }}
+                        </div>
+                    @endforeach
+                @endif
+
+                @if (Session::has('message'))
+                    <div dusk="success" class="alert alert-success">
+                        {{ Session::get('message') }}
                     </div>
                 @endif
+                
                 @yield('content')
             </div>
         </div>
