@@ -20,7 +20,7 @@ class ModuleController extends Controller
         ]);
 
         Module::create($request->all());
-        return redirect()->route('admin')->with('message', 'New module created successfully!');
+        return redirect()->route('admin')->with('message', 'De nieuwe module is aangemaakt!');
     }
 
     public function edit($id)
@@ -42,12 +42,12 @@ class ModuleController extends Controller
         ]);
 
         Module::find($id)->update($request->all());
-        return redirect()->route('admin')->with('message', 'De nieuwe module is aangemaakt!');
+        return redirect()->route('admin')->with('message', 'De module is aangepast!');
     }
 
     public function destroy($id)
     {
         Module::find($id)->delete();
-        return redirect()->route('admin')->with('message', 'New module deleted successfully!');
+        return redirect()->route('admin')->with('message', 'De module is succesvol verwijderd.');
     }
 }
