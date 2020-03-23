@@ -11,7 +11,7 @@ class Exam extends Model
 
     protected $fillable = [
         'name',
-        'ec',
+        'grade',
         'module_id',
         'type',
     ];

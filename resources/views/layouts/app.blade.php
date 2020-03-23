@@ -30,10 +30,10 @@
                                 <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/deadline') }}">Deadline manager</a>
+                                <a class="nav-link" href="{{ route('admin') }}">Admin</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin') }}">Admin</a>
+                                <a class="nav-link" href="{{ url('/deadline') }}">Deadline manager</a>
                             </li>
                             @guest
                             @else

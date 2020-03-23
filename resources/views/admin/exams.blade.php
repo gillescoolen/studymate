@@ -6,6 +6,7 @@
                 <th scope="col">Naam</th>
                 <th scope="col">Vak</th>
                 <th scope="col">Type</th>
+                <th scope="col">Cijfer</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -14,7 +15,8 @@
                     <tr>
                         <td style="width: 25%">{{$exam->name}}</td>
                         <td style="width: 25%">{{$exam->module->name}}</td>
-                        <td style="width: 25%">{{$exam->type}}</td>
+                        <td style="width: 20%">{{$exam->type}}</td>
+                        <td style="width: 10%">{{$exam->grade ? $exam->grade : '-'}}</td>
                         <td style="width: 25%">
                         <form action="{{ route('exam.destroy', $exam->id) }}" method="POST">
                             @csrf

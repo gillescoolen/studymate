@@ -12,7 +12,6 @@ class Module extends Model
     protected $fillable = [
         'name',
         'ec',
-        'grade',
         'period_id',
         'teacher_id',
     ];
@@ -31,7 +30,12 @@ class Module extends Model
         return $this->hasMany('App\Exam');
     }
 
-    public function getModuleTotalAttribute() {
-        return $this->exams()->sum('ec');
+    public function getGradeAttribute()
+    {
+        if ($this->exams()->where('grade', '=', null)->count() > 0) {
+            return null;
+        }
+
+        return $this->exams()->sum('grade') / $this->exams()->count('grade');
     }
 }

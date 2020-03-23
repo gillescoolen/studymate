@@ -5,9 +5,6 @@
         <div class="col">
             <input type="text" class="form-control" placeholder="examen naam" id="name" name="name" required>
         </div>
-        <div class="col">
-            <input type="number" class="form-control" placeholder="ec" id="ec" name="ec" required min="0">
-        </div>
     </div>
     <div class="form-row">
         <div class="col">

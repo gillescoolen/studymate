@@ -12,7 +12,7 @@
                         <input type="text" class="form-control" value="{{old('name', $exam->name)}}" placeholder="name" id="name" name="name" required>
                     </div>
                     <div class="col">
-                        <input type="number" class="form-control" value="{{old('ec', $exam->ec)}}" placeholder="ec" id="ec" name="ec" min="0" required>
+                        <input type="number" class="form-control" value="{{old('grade', $exam->grade)}}" placeholder="grade" id="grade" name="grade" min="0" max="10" required>
                     </div>
                 </div>
                 <div class="form-row">
