@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Tag;
 use App\Exam;
 use App\Deadline;
-use Illuminate\Http\Request;
+use App\Http\Requests\DeadlineRequest;
 
 class DeadlineController extends Controller
 {
@@ -34,16 +34,9 @@ class DeadlineController extends Controller
         return view('deadlines', ['exams' => $exams, 'tags' => $tags, 'deadlines' => $collection]);
     }
 
-    public function store(Request $request)
+    public function store(DeadlineRequest $request)
     {
-        $request->validate([
-            'date' => 'required|date|filled',
-            'tags' => 'array|filled',
-            'tags.name' => 'string|filled',
-            'exam_id' => 'required|integer|gt:0'
-        ]);
-
-        $deadline = Deadline::create($request->all());
+        $deadline = Deadline::create($request->validated());
         $deadline->tags()->sync($request->tags);
         return redirect('/deadline');
     }
@@ -62,15 +55,8 @@ class DeadlineController extends Controller
         return view('deadlines.edit.edit-deadline', ['tags' => $tags, 'deadlineTags' => $deadlineTags, 'deadline' => $deadline]);
     }
 
-    public function update(Request $request, $id)
+    public function update(DeadlineRequest $request, $id)
     {
-        $request->validate([
-            'date' => 'date|filled',
-            'tags' => 'array|filled',
-            'done' => 'boolean|filled',
-            'tags.name' => 'string|filled'
-        ]);
-
         $deadline = Deadline::find($id);
 
         $done = $request->input('done') ? 1 : 0;
@@ -84,9 +70,9 @@ class DeadlineController extends Controller
         return redirect('/deadline');
     }
 
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
         Deadline::destroy($id);
-        return redirect()->route('deadline')->with('message', 'Deadline is succesvol verwijderd.');
+        return redirect('/deadline')->with('message', 'Deadline is succesvol verwijderd.');
     }
 }

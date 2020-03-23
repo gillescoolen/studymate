@@ -3,25 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Exam;
-use App\Http\Requests\ExamRequest;
-use App\Module;
 use App\Type;
-use Illuminate\Http\Request;
+use App\Module;
+use App\Http\Requests\ExamRequest;
 
 class ExamController extends Controller
 {
     public function store(ExamRequest $request)
     {
-        dd($request);
-
-        $this->validate($request, [
-            'name' => 'required|max:255|filled|min:1',
-            'ec' => 'required|integer|filled|gt:0',
-            'module_id' => 'required|filled|min:0',
-            'type_id' => 'required|filled|min:0',
-        ]);
-
-        Exam::create($request->all());
+        Exam::create($request->validated());
         return redirect()->route('admin')->with('message', 'New exam created successfully!');
     }
 
@@ -34,16 +24,9 @@ class ExamController extends Controller
         return view('admin.edit.edit-exam', ['exam' => $exam, 'modules' => $modules, 'types' => $types]);
     }
 
-    public function update(Request $request, $id)
+    public function update(ExamRequest $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required|max:255|filled|min:1',
-            'ec' => 'required|integer|filled|gt:0',
-            'module_id' => 'required|filled|min:0',
-            'type_id' => 'required|filled|min:0',
-        ]);
-
-        Exam::find($id)->update($request->all());
+        Exam::find($id)->update($request->validated());
         return redirect()->route('admin')->with('message', 'Het examen is aangepast!');
     }
 

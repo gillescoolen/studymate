@@ -13,7 +13,7 @@ class ModuleRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->role === 'admin';
     }
 
     /**

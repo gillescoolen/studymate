@@ -13,7 +13,7 @@ class ExamRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->role === 'admin';
     }
 
     /**
@@ -24,10 +24,10 @@ class ExamRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
-            'ec' => 'required|integer|min:0',
-            'module_id' => 'required',
-            'type_id' => 'required',
+            'name' => 'required|max:255|filled|min:1',
+            'ec' => 'required|integer|filled|gt:0',
+            'type' => 'required|filled|max:255|min:1',
+            'module_id' => 'required|filled|min:0',
         ];
     }
 }

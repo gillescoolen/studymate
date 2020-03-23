@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PeriodRequest extends FormRequest
+class DeadlineRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class PeriodRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->role === 'admin';
+        return $this->user()->role === 'manager';
     }
 
     /**
@@ -24,8 +24,10 @@ class PeriodRequest extends FormRequest
     public function rules()
     {
         return [
-            'period' => 'required|integer|gt:0|filled',
-            'semester' => 'required|integer|gt:0|filled'
+            'date' => 'required|date|filled',
+            'tags' => 'array|filled',
+            'tags.name' => 'string|filled|min:1|max:255',
+            'exam_id' => 'integer|filled|gt:0'
         ];
     }
 }

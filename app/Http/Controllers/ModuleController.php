@@ -6,20 +6,12 @@ use App\Module;
 use App\Period;
 use App\Teacher;
 use App\Http\Requests\ModuleRequest;
-use Illuminate\Http\Request;
 
 class ModuleController extends Controller
 {
     public function store(ModuleRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255|min:1|filled',
-            'ec' => 'required|integer|filled|gt:0',
-            'period_id' => 'required|integer|filled|gt:0',
-            'teacher_id' => 'required|integer|filled|gt:0'
-        ]);
-
-        Module::create($request->all());
+        Module::create($request->validated());
         return redirect()->route('admin')->with('message', 'De nieuwe module is aangemaakt!');
     }
 
@@ -32,16 +24,9 @@ class ModuleController extends Controller
         return view('admin.edit.edit-module', ['module' => $module, 'periods' => $periods, 'teachers' => $teachers]);
     }
 
-    public function update(Request $request, $id)
+    public function update(ModuleRequest $request, $id)
     {
-        $request->validate([
-            'name' => 'required|string|max:255|min:1|filled',
-            'ec' => 'required|integer|filled|gt:0',
-            'period_id' => 'required|integer|filled|gt:0',
-            'teacher_id' => 'required|integer|filled|gt:0'
-        ]);
-
-        Module::find($id)->update($request->all());
+        Module::find($id)->update($request->validated());
         return redirect()->route('admin')->with('message', 'De module is aangepast!');
     }
 

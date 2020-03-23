@@ -13,7 +13,7 @@ class TeacherRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->role === 'admin';
     }
 
     /**
@@ -24,8 +24,8 @@ class TeacherRequest extends FormRequest
     public function rules()
     {
         return [
-            'firstname' => 'required|max:255',
-            'lastname' => 'required|max:255',
+            'firstname' => 'required|string|max:255|min:1|filled',
+            'lastname' => 'required|string|max:255|min:1|filled',
         ];
     }
 }
