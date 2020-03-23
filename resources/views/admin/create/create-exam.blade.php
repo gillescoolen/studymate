@@ -23,7 +23,7 @@
             <select class="form-control" id="type" name="type" required>
                 @if(count($types) > 0)
                     @foreach($types as $type)
-                        <option value="{{$type->id}}">{{$type}}</option>
+                        <option value="{{$type->type}}">{{$type->type}}</option>
                     @endforeach
                 @endif
             </select>
