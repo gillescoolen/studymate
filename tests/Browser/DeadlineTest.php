@@ -33,7 +33,7 @@ class DeadlineTest extends DuskTestCase
      *
      * @return void
      */
-    public function testDeadlineRoleMiddleware()
+    public function testRoleMiddleware()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit($this->url())
@@ -46,7 +46,7 @@ class DeadlineTest extends DuskTestCase
      *
      * @return void
      */
-    public function testDeadlineRole()
+    public function testRole()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit($this->url())
@@ -66,7 +66,7 @@ class DeadlineTest extends DuskTestCase
      *
      * @return void
      */
-    public function testDeadlineLogin()
+    public function testLogin()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit($this->url())
@@ -81,11 +81,29 @@ class DeadlineTest extends DuskTestCase
     }
 
     /**
+     * Tests if an authenticated user can't create a deadline with missing properties.
+     *
+     * @return void
+     */
+    public function testFaultyCreation()
+    {
+
+        $this->browse(function (Browser $browser) {
+            $browser->visit($this->url())
+                ->assertSee('Voeg een deadline toe')
+                ->select('@exam')
+                ->click('@submit')
+                ->assertPresent('@error')
+                ->assertVisible('@error');
+        });
+    }
+
+    /**
      * Tests if an authenticated user can create a deadline.
      *
      * @return void
      */
-    public function testDeadlineCreation()
+    public function testCreation()
     {
 
         $this->browse(function (Browser $browser) {
@@ -109,7 +127,7 @@ class DeadlineTest extends DuskTestCase
      *
      * @return void
      */
-    public function testDeadlineDeletion()
+    public function testDeletion()
     {
 
         $this->browse(function (Browser $browser) {
@@ -126,7 +144,7 @@ class DeadlineTest extends DuskTestCase
      * 
      * @return void
      */
-    public function testDeadlineToDone()
+    public function testToDone()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit($this->url())
@@ -140,12 +158,33 @@ class DeadlineTest extends DuskTestCase
         });
     }
 
+
+    /**
+     * Tests if an authenticated user can't edit a deadline with missing properties.
+     * 
+     * @return void
+     */
+    public function testFaultyEdit()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit($this->url())
+                ->assertSee($this->title())
+                ->click('@sort-done')
+                ->click('@edit-2')
+                ->clear('@date')
+                ->click('@save')
+                ->assertDontSee($this->title())
+                ->assertPresent('@error')
+                ->assertVisible('@error');
+        });
+    }
+
     /**
      * Tests if an authenticated user can edit a deadline.
      * 
      * @return void
      */
-    public function testDeadlineEdit()
+    public function testEdit()
     {
         $this->browse(function (Browser $browser) {
             $today = now();
@@ -166,12 +205,36 @@ class DeadlineTest extends DuskTestCase
                 ->click('@save')
                 ->assertSee($this->title())
                 ->click('@sort-date')
-                ->assertSeeIn('@date-2',$date)
+                ->assertSeeIn('@date-2', $date)
                 ->assertNotChecked('@done-2');
 
             foreach ($tags as $tag) {
                 $browser->assertSeeIn('@tags-2', $tag);
             }
+        });
+    }
+
+    /**
+     * Tests if sorting works.
+     * 
+     * @return void
+     */
+    public function testSorting()
+    {
+        $this->browse(function (Browser $browser) {
+            $date = date('Y-m-d');
+
+            $browser->visit($this->url())
+                ->assertSee($this->title())
+                ->click('@sort-date')
+                ->assertQueryStringHas('sort', 'date')
+                ->assertSeeIn('@date-2', $date)
+                ->assertNotChecked('@done-2')
+                ->click('@done-0')
+                ->click('@save-0')
+                ->click('@sort-done')
+                ->assertQueryStringHas('sort', 'done')
+                ->assertChecked('@done-2');
         });
     }
 }
