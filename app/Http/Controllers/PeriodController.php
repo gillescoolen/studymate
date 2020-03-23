@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Period;
 use App\Http\Requests\PeriodRequest;
-use Illuminate\Http\Request;
 
 class PeriodController extends Controller
 {
@@ -16,12 +15,7 @@ class PeriodController extends Controller
 
     public function store(PeriodRequest $request)
     {
-        $request->validate([
-            'period' => 'required|integer|gt:0|filled',
-            'semester' => 'required|integer|gt:0|filled'
-        ]);
-
-        Period::create($request->all());
+        Period::create($request->validated());
         return redirect()->route('admin')->with('message', 'New period created successfully!');
     }
 
@@ -31,14 +25,9 @@ class PeriodController extends Controller
         return view('admin.edit.edit-period', ['period' => $period]);
     }
 
-    public function update(Request $request, $id)
+    public function update(PeriodRequest $request, $id)
     {
-        $request->validate([
-            'period' => 'required|integer|gt:0|filled',
-            'semester' => 'required|integer|gt:0|filled'
-        ]);
-
-        Period::find($id)->update($request->all());
+        Period::find($id)->update($request->validated());
         return redirect()->route('admin')->with('message', 'Period updated successfully!');
     }
 

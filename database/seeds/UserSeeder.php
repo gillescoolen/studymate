@@ -16,13 +16,13 @@ class UserSeeder extends Seeder
             [
                 'name' => 'admin',
                 'email' => 'admin@studymate.com',
-                'role_id' => 1,
+                'role' => 'admin',
                 'password' => bcrypt('test12345'),
             ],
             [
                 'name' => 'manager',
                 'email' => 'manager@studymate.com',
-                'role_id' => 2,
+                'role' => 'manager',
                 'password' => bcrypt('test12345'),
             ]
         ]);
