@@ -36,6 +36,13 @@ class DeadlineController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'date' => 'required|date|filled',
+            'tags' => 'array|filled',
+            'tags.name' => 'string|filled',
+            'exam_id' => 'required|integer'
+        ]);
+
         $deadline = Deadline::create($request->all());
         $deadline->tags()->sync($request->tags);
         return redirect('/deadline');
@@ -51,13 +58,19 @@ class DeadlineController extends Controller
         if ($deadline->tags) {
             foreach ($deadline->tags as $tag) array_push($deadlineTags, $tag->name);
         }
-
         
         return view('deadlines.edit.edit-deadline', ['tags' => $tags, 'deadlineTags' => $deadlineTags, 'deadline' => $deadline]);
     }
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'date' => 'date|filled',
+            'tags' => 'array|filled',
+            'done' => 'boolean|filled',
+            'tags.name' => 'string|filled'
+        ]);
+
         $deadline = Deadline::find($id);
 
         $done = $request->input('done') ? 1 : 0;
