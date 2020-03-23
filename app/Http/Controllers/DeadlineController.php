@@ -40,7 +40,7 @@ class DeadlineController extends Controller
             'date' => 'required|date|filled',
             'tags' => 'array|filled',
             'tags.name' => 'string|filled',
-            'exam_id' => 'required|integer'
+            'exam_id' => 'required|integer|gt:0'
         ]);
 
         $deadline = Deadline::create($request->all());
@@ -87,7 +87,6 @@ class DeadlineController extends Controller
     public function destroy(Request $request, $id)
     {
         Deadline::destroy($id);
-
-        return redirect('/deadline');
+        return redirect()->route('deadline')->with('message', 'Deadline is succesvol verwijderd.');
     }
 }

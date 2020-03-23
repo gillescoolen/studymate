@@ -11,7 +11,7 @@
             @method('PUT')
             <div class="form-row">
                 <div class="col-6">
-                    <input dusk="date" value="{{old('date', $deadline->date)}}" type="date" class="form-control" placeholder="datum" id="date" name="date">
+                    <input dusk="date" value="{{old('date', $deadline->date)}}" type="date" class="form-control" placeholder="datum" id="date" name="date" required>
                     <input dusk="done" type="checkbox" name="done" value="1" {{$deadline->done === 1 ? 'checked' : ''}}>
                     <label for="done">Voldaan</label>
                 </div>
