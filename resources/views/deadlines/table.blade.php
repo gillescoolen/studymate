@@ -12,6 +12,7 @@
             <th scope="col"></th>
             <th scope="col"></th>
             <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
@@ -40,6 +41,9 @@
                 </form>
                 <td>
                     <a dusk="edit-{{$loop->index}}" class="btn btn-sm btn-warning" href="{{ route('deadline.edit', $deadline['id']) }}">Edit</a>
+                </td>
+                <td>
+                    <a dusk="edit-{{$loop->index}}" class="btn btn-sm btn-info" href="{{ route('deadline.open-upload', $deadline['id']) }}">Upload</a>
                 </td>
                 <td>
                     <form action="{{ route('deadline.destroy', $deadline['id']) }}" method="POST">

@@ -41,6 +41,8 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 Route::resource('deadline', 'DeadlineController')->middleware('role:manager')->except([
     'create', 'show'
-]);;
+]);
+
+Route::get('deadline/{deadline}/open-upload', 'DeadlineController@openUpload')->name('deadline.open-upload')->middleware('role:manager');
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

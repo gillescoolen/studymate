@@ -41,6 +41,18 @@ class DeadlineController extends Controller
         return redirect('/deadline');
     }
 
+    public function openUpload(DeadlineRequest $request, $id)
+    {
+        $deadline = Deadline::find($id);
+        return view('deadlines.upload.upload-deadline', ['deadline' => $deadline]);
+    }
+
+    public function upload(DeadlineRequest $request, $id)
+    {
+        $deadline = Deadline::find($id);
+        $this->index();
+    }
+
     public function edit($id)
     {
         $tags = Tag::all();
