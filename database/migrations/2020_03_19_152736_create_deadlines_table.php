@@ -20,6 +20,7 @@ class CreateDeadlinesTable extends Migration
             $table->boolean('done')->default(0);
             $table->foreign('exam_id')->references('id')->on('exam')
                 ->onDelete('cascade');
+            $table->string('work')->nullable();
             $table->timestamps();
         });
     }
