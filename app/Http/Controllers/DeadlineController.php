@@ -47,10 +47,30 @@ class DeadlineController extends Controller
         return view('deadlines.upload.upload-deadline', ['deadline' => $deadline]);
     }
 
-    public function upload(DeadlineRequest $request, $id)
+    public function file(DeadlineRequest $request, $id)
     {
         $deadline = Deadline::find($id);
-        $this->index();
+
+        if ($request->hasFile('file')) {
+            // file name
+            $filename = $request->file('file')->getClientOriginalName();
+            $request->file('file')->storeAs('public/work', $filename);
+
+            // store in db
+            $deadline->work = $filename;
+            $deadline->save();
+
+            return redirect()->route('deadline.index')->with('message', 'Werk ingeleverd');
+        } else {
+            return view('deadlines.upload.upload-deadline', ['deadline' => $deadline])->with('message', 'Werk ingeleverd');
+        }
+    }
+
+    public function download(DeadlineRequest $request, $id)
+    {
+        $deadline = Deadline::find($id);
+
+        return response()->download(public_path('storage/work/' . $deadline->work));
     }
 
     public function edit($id)

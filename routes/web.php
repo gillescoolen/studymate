@@ -45,4 +45,8 @@ Route::resource('deadline', 'DeadlineController')->middleware('role:manager')->e
 
 Route::get('deadline/{deadline}/open-upload', 'DeadlineController@openUpload')->name('deadline.open-upload')->middleware('role:manager');
 
+Route::put('deadline/{deadline}/file', 'DeadlineController@file')->name('deadline.file')->middleware('role:manager');
+
+Route::get('deadline/{deadline}/download', 'DeadlineController@download')->name('deadline.download')->middleware('role:manager');
+
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

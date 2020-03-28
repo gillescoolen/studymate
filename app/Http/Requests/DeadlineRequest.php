@@ -27,7 +27,8 @@ class DeadlineRequest extends FormRequest
       'date' => 'date|filled',
       'tags' => 'array|filled',
       'tags.name' => 'string|filled|min:1|max:255',
-      'exam_id' => 'integer|filled|gt:0'
+      'exam_id' => 'integer|filled|gt:0',
+      'file' => 'mimes:zip,rar'
     ];
   }
 }
