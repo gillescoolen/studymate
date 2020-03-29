@@ -11,10 +11,10 @@
             @csrf
             @method('PUT')
             <input type="file" id="file" name="file"/>
-            <button dusk="save" type="submit" class="btn btn-primary">Inleveren</button>
+            <button type="submit" class="btn btn-primary">Inleveren</button>
         </form>
     </div>
 </div>
 <br>
-Ingeleverd werk: <a href="{{ route('deadline.download', $deadline->id) }}">{{$deadline->work}}</a>
+<h2>Ingeleverd werk:</h2> <a href="{{ route('deadline.download', $deadline->id) }}">{{$deadline->work}}</a>
 @endsection
