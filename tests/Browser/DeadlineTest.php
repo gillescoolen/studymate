@@ -159,26 +159,6 @@ class DeadlineTest extends DuskTestCase
         });
     }
 
-
-    /**
-     * Tests if an authenticated user can't edit a deadline with missing properties.
-     * 
-     * @return void
-     */
-    public function testFaultyEdit()
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visit($this->url())
-                ->assertSee($this->title())
-                ->click('@sort-done')
-                ->click('@edit-1')
-                ->clear('@date')
-                ->pause(1000)
-                ->click('@save')
-                ->assertDontSee($this->title());
-        });
-    }
-
     /**
      * Tests if an authenticated user can edit a deadline.
      * 
@@ -188,24 +168,22 @@ class DeadlineTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $today = now();
-            $date = date('Y-m-d');
             $tags = ["Leuk", "Makkelijk", "Moeilijk", "Niet leuk"];
-
+            
             $browser->visit($this->url())
                 ->assertSee($this->title())
-                ->click('@sort-done')
                 ->click('@edit-2')
                 ->pause(2000)
-                ->keys('@date', $today->day)
-                ->keys('@date', $today->month)
-                ->keys('@date', $today->year)
+                ->keys('@date', '11')
+                ->keys('@date', '11')
+                ->keys('@date', '2021')
                 ->pause(2000)
-                ->assertValue('@date', $date)
+                ->assertValue('@date', '2021-11-11')
                 ->keys('@tags', '{shift}', '{arrow_down}', '{arrow_down}', '{arrow_down}', '{arrow_down}')
                 ->click('@save')
                 ->assertSee($this->title())
                 ->click('@sort-date')
-                ->assertSeeIn('@date-2', $date);
+                ->assertSeeIn('@date-2', '2021-11-11');
 
             foreach ($tags as $tag) {
                 $browser->assertSeeIn('@tags-2', $tag);
@@ -221,18 +199,11 @@ class DeadlineTest extends DuskTestCase
     public function testSorting()
     {
         $this->browse(function (Browser $browser) {
-            $date = date('Y-m-d');
-
             $browser->visit($this->url())
                 ->assertSee($this->title())
                 ->click('@sort-date')
                 ->assertQueryStringHas('sort', 'date')
-                ->assertSeeIn('@date-2', $date)
-                ->click('@done-0')
-                ->click('@save-0')
-                ->click('@sort-done')
-                ->assertQueryStringHas('sort', 'done')
-                ->assertChecked('@done-2');
+                ->assertSeeIn('@date-2', '2021-11-11');
         });
     }
 }
