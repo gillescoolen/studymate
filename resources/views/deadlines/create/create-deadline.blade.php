@@ -4,14 +4,14 @@
     @csrf
     <div class="form-row">
         <div class="col-6">
-            <select dusk="exam" class="form-control" id="exam_id" name="exam_id" required>
+            <select dusk="exam" class="form-control" id="exam_id" name="exam_id">
                 @if(count($exams) > 0)
                     @foreach($exams as $exam)
                         <option value="{{$exam->id}}">{{$exam->name}}</option>
                     @endforeach
                 @endif
             </select>
-            <input dusk="date" type="date" class="form-control" placeholder="datum" id="date" name="date" required>
+            <input dusk="date" type="date" class="form-control" placeholder="datum" id="date" name="date">
             <button dusk="submit" id="submit" type="submit" class="btn btn-primary">Submit</button>
         </div>
         <div class="col-6">

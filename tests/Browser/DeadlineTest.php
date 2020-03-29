@@ -133,8 +133,9 @@ class DeadlineTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $today = now();
             $browser->visit($this->url())
-                ->assertDontSee('Voeg een deadline toe')
                 ->click('@delete-3')
+                ->assertPresent('@success')
+                ->assertVisible('@success')
                 ->assertSee('Voeg een deadline toe');
         });
     }
@@ -153,8 +154,8 @@ class DeadlineTest extends DuskTestCase
                 ->click('@done-0')
                 ->assertChecked('@done-0')
                 ->click('@save-0')
-                ->assertSee($this->title())
-                ->assertChecked('@done-0');
+                ->assertChecked('@done-0')
+                ->assertSee($this->title());
         });
     }
 
@@ -170,12 +171,11 @@ class DeadlineTest extends DuskTestCase
             $browser->visit($this->url())
                 ->assertSee($this->title())
                 ->click('@sort-done')
-                ->click('@edit-2')
+                ->click('@edit-1')
                 ->clear('@date')
+                ->pause(1000)
                 ->click('@save')
-                ->assertDontSee($this->title())
-                ->assertPresent('@error')
-                ->assertVisible('@error');
+                ->assertDontSee($this->title());
         });
     }
 
@@ -195,18 +195,17 @@ class DeadlineTest extends DuskTestCase
                 ->assertSee($this->title())
                 ->click('@sort-done')
                 ->click('@edit-2')
-                ->click('@done')
+                ->pause(2000)
                 ->keys('@date', $today->day)
                 ->keys('@date', $today->month)
                 ->keys('@date', $today->year)
+                ->pause(2000)
                 ->assertValue('@date', $date)
                 ->keys('@tags', '{shift}', '{arrow_down}', '{arrow_down}', '{arrow_down}', '{arrow_down}')
-                ->assertNotChecked('@done')
                 ->click('@save')
                 ->assertSee($this->title())
                 ->click('@sort-date')
-                ->assertSeeIn('@date-2', $date)
-                ->assertNotChecked('@done-2');
+                ->assertSeeIn('@date-2', $date);
 
             foreach ($tags as $tag) {
                 $browser->assertSeeIn('@tags-2', $tag);
@@ -229,7 +228,6 @@ class DeadlineTest extends DuskTestCase
                 ->click('@sort-date')
                 ->assertQueryStringHas('sort', 'date')
                 ->assertSeeIn('@date-2', $date)
-                ->assertNotChecked('@done-2')
                 ->click('@done-0')
                 ->click('@save-0')
                 ->click('@sort-done')
